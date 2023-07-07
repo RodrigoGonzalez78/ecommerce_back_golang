@@ -1,9 +1,7 @@
 package main
 
-import "net/http"
+import "github.com/RodrigoGonzalez78/handlers"
 
 func main() {
-	r := http.NewServeMux()
-	r.HandleFunc("/", Home())
-
+	handlers.Manipulators()
 }
