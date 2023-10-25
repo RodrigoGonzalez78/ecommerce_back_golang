@@ -3,7 +3,7 @@ package tools
 import (
 	"time"
 
-	"github.com/RodrigoGonzalez78/models"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
 	"github.com/golang-jwt/jwt"
 	"golang.org/x/crypto/bcrypt"
 )

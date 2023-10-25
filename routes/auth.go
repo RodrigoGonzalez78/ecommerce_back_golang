@@ -5,15 +5,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/RodrigoGonzalez78/db"
-	"github.com/RodrigoGonzalez78/models"
-	"github.com/RodrigoGonzalez78/tools"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
 )
 
 // Ruta para registrar un usuario nuevo
 func SignUp(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Println("Call me")
+	
 	var newUser models.User
 
 	err := json.NewDecoder(r.Body).Decode(&newUser)

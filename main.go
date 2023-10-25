@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/RodrigoGonzalez78/db"
-	"github.com/RodrigoGonzalez78/routes"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/db"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/routes"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
