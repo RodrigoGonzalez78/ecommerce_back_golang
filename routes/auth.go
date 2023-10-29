@@ -2,16 +2,16 @@ package routes
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/db"
 	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/tools"
 )
 
 // Ruta para registrar un usuario nuevo
 func SignUp(w http.ResponseWriter, r *http.Request) {
 
-	
 	var newUser models.User
 
 	err := json.NewDecoder(r.Body).Decode(&newUser)

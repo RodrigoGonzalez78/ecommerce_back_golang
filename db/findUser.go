@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/RodrigoGonzalez78/models"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -13,7 +13,7 @@ func FindUser(email string) (models.User, bool, string) {
 
 	defer cancel()
 
-	db := MongoCM.Database("amazon_clone")
+	db := MongoCM.Database("ecommerce_back_golang")
 	col := db.Collection("users")
 
 	condition := bson.M{"email": email}

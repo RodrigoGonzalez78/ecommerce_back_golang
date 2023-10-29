@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/RodrigoGonzalez78/models"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -13,7 +13,7 @@ func GetAllProducts() ([]models.Product, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
-	db := MongoCM.Database("amazon_clone")
+	db := MongoCM.Database("ecommerce_back_golang")
 	col := db.Collection("products")
 
 	// Opcionalmente, puedes usar opciones adicionales de consulta aquí.

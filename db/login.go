@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/RodrigoGonzalez78/models"
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
 	"golang.org/x/crypto/bcrypt"
 )
 

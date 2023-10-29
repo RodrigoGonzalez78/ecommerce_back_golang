@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
+	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
 	"github.com/RodrigoGonzalez78/ecommerce_back_golang/tools"
-	"github.com/RodrigoGonzalez78/models"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -14,7 +14,7 @@ func SaveUser(user models.User) (string, error) {
 
 	defer cancel()
 
-	db := MongoCM.Database("amazon_clone")
+	db := MongoCM.Database("ecommerce_back_golang")
 	col := db.Collection("users")
 
 	user.Password, _ = tools.EncriptPassword(user.Password)
