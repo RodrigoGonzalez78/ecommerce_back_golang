@@ -31,6 +31,7 @@ func AdminMiddleware(next http.Handler) http.Handler {
 
 		// Verifica si el usuario es un administrador
 		isAdmin := IsUserAdmin(userID)
+
 		if !isAdmin {
 			http.Error(w, "You are not an admin!", http.StatusUnauthorized)
 			return

@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func SaveUser(user models.User) (string, error) {
+func CreateUser(user models.User) (string, error) {
 	cxt, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 
 	defer cancel()

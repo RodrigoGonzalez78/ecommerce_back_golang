@@ -5,8 +5,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func Login(email string, pass string) (models.User, bool) {
-	user, found, _ := FindUser(email)
+func CheckLogin(email string, pass string) (models.User, bool) {
+	user, found, _ := FindUserByEmail(email)
 
 	if !found {
 		return user, false

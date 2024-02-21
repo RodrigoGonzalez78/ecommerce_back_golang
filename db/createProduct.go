@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func SaveProduct(product models.Product) (string, error) {
+func CreateProduct(product models.Product) (string, error) {
 	cxt, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 
 	defer cancel()
