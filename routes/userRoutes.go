@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/RodrigoGonzalez78/ecommerce_back_golang/db"
+	jwtmetods "github.com/RodrigoGonzalez78/ecommerce_back_golang/jwtMetods"
 	"github.com/RodrigoGonzalez78/ecommerce_back_golang/models"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
@@ -24,10 +25,10 @@ func AddToCart(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Obtener colección de usuarios
-	collection := client.Database("test").Collection("users")
+	collection := db.MongoCM.Database("test").Collection("users")
 
 	// Buscar el usuario por ID
-	filter := bson.M{"_id": req.user}
+	filter := bson.M{"_id": jwtmetods.IDUser}
 	update := bson.M{
 		"$addToSet": bson.M{"cart": bson.M{"product": requestData.ID, "quantity": 1}},
 	}
@@ -50,7 +51,7 @@ func RemoveFromCart(w http.ResponseWriter, r *http.Request) {
 	collection := db.MongoCM.Database("test").Collection("users")
 
 	// Buscar el usuario por ID
-	filter := bson.M{"_id": req.user}
+	filter := bson.M{"_id": jwtmetods.IDUser}
 	update := bson.M{
 		"$pull": bson.M{"cart": bson.M{"product": id}},
 	}
@@ -77,10 +78,10 @@ func SaveDefaultAddress(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Obtener colección de usuarios
-	collection := client.Database("test").Collection("users")
+	collection := db.MongoCM.Database("test").Collection("users")
 
 	// Buscar el usuario por ID y actualizar la dirección
-	filter := bson.M{"_id": req.user}
+	filter := bson.M{"_id": jwtmetods.IDUser}
 	update := bson.M{
 		"$set": bson.M{"address": requestData.Address},
 	}
@@ -98,9 +99,9 @@ func SaveDefaultAddress(w http.ResponseWriter, r *http.Request) {
 func OrderProduct(w http.ResponseWriter, r *http.Request) {
 	// Decodificar la solicitud JSON
 	var requestData struct {
-		Cart       []CartItem `json:"cart"`
-		TotalPrice float64    `json:"totalPrice"`
-		Address    string     `json:"address"`
+		Cart       []models.Product `json:"cart"`
+		TotalPrice float64          `json:"totalPrice"`
+		Address    string           `json:"address"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&requestData); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -121,7 +122,7 @@ func GetMyOrders(w http.ResponseWriter, r *http.Request) {
 	collection := db.MongoCM.Database("test").Collection("orders")
 
 	// Consultar los pedidos del usuario actual
-	cursor, err := collection.Find(context.TODO(), bson.M{"userId": req.user})
+	cursor, err := collection.Find(context.TODO(), bson.M{"userId": jwtmetods.IDUser})
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
@@ -145,7 +146,7 @@ func GetOrderedProducts(w http.ResponseWriter, r *http.Request) {
 	collection := db.MongoCM.Database("test").Collection("orders")
 
 	// Consultar los pedidos del usuario actual
-	cursor, err := collection.Find(context.TODO(), bson.M{"userId": req.user})
+	cursor, err := collection.Find(context.TODO(), bson.M{"userId": jwtmetods.IDUser})
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
@@ -163,7 +164,7 @@ func GetOrderedProducts(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		for _, item := range order.Products {
-			products = append(products, item.Product)
+			products = append(products, item)
 		}
 	}
 

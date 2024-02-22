@@ -13,6 +13,7 @@ var clientOptions = options.Client().ApplyURI("mongodb://localhost:27017")
 
 // Funcion para conectar a mongodb
 func ConectarBD() *mongo.Client {
+
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {

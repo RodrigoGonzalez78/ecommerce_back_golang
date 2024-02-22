@@ -30,7 +30,7 @@ func main() {
 	router.HandleFunc("/signin", routes.SignIn).Methods("POST")
 
 	//Admin
-	router.HandleFunc("/admin/add-product", routes.AdminAddProduct).Methods("POST")
+	router.HandleFunc("/admin/add-product", routes.AddProduct).Methods("POST")
 	router.HandleFunc("/admin/get-products", routes.AdminGetProducts).Methods("GET")
 	router.HandleFunc("/admin/delete-product/{id}", routes.DeleteProduct).Methods("POST")
 	router.HandleFunc("/admin/get-orders", routes.GetOrders).Methods("GET")
