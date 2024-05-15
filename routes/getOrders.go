@@ -10,6 +10,7 @@ import (
 // Handler de la ruta para recuperar todas las órdenes
 func GetOrders(w http.ResponseWriter, r *http.Request) {
 	orders, err := db.GetAllOrders()
+
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))

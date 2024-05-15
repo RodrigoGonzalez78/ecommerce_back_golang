@@ -18,6 +18,7 @@ func main() {
 		log.Fatal("Sin conexcion a la BD!")
 
 	}
+
 	router := mux.NewRouter()
 
 	// Home
@@ -25,11 +26,11 @@ func main() {
 		w.Write([]byte("Api de Ecommerce"))
 	})
 
-	//Auth
+	//Auth completo y verificado
 	router.HandleFunc("/signup", routes.SignUp).Methods("POST")
 	router.HandleFunc("/signin", routes.SignIn).Methods("POST")
 
-	//Admin
+	//Admin completo --falta validaciones para los campos vacios
 	router.HandleFunc("/admin/add-product", routes.AddProduct).Methods("POST")
 	router.HandleFunc("/admin/get-products", routes.AdminGetProducts).Methods("GET")
 	router.HandleFunc("/admin/delete-product/{id}", routes.DeleteProduct).Methods("POST")
@@ -37,7 +38,7 @@ func main() {
 	router.HandleFunc("/admin/change-order-status", routes.ChangeOrderStatus).Methods("POST")
 	router.HandleFunc("/admin/analytics", routes.GetAnalytics).Methods("GET")
 
-	//Address
+	//Address --incompleto falta separar de la db la logica
 	router.HandleFunc("/get-address", routes.GetAddresses).Methods("GET")
 	router.HandleFunc("/add-address", routes.AddAddress).Methods("POST")
 	router.HandleFunc("/delete-address", routes.DeleteAddress).Methods("POST")
@@ -48,7 +49,7 @@ func main() {
 	router.HandleFunc("/rate-product", routes.RateProduct).Methods("POST")
 	router.HandleFunc("/deal-of-day", routes.GetDealOfDay).Methods("GET")
 
-	//Users
+	//Users --falta modularisar logica y separar de la db
 	router.HandleFunc("/add-to-cart", routes.AddToCart).Methods("POST")
 	router.HandleFunc("/remove-from-cart/{id}", routes.RemoveFromCart).Methods("DELETE")
 	router.HandleFunc("/save-default-address", routes.SaveDefaultAddress).Methods("POST")
