@@ -49,7 +49,7 @@ func main() {
 	router.HandleFunc("/rate-product", routes.RateProduct).Methods("POST")
 	router.HandleFunc("/deal-of-day", routes.GetDealOfDay).Methods("GET")
 
-	//Users --falta modularisar logica y separar de la db
+	//Users
 	router.HandleFunc("/add-to-cart", routes.AddToCart).Methods("POST")
 	router.HandleFunc("/remove-from-cart/{id}", routes.RemoveFromCart).Methods("DELETE")
 	router.HandleFunc("/save-default-address", routes.SaveDefaultAddress).Methods("POST")
