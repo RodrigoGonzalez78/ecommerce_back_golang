@@ -30,7 +30,7 @@ func main() {
 	router.HandleFunc("/signup", routes.SignUp).Methods("POST")
 	router.HandleFunc("/signin", routes.SignIn).Methods("POST")
 
-	//Admin completo --falta validaciones para los campos vacios
+	//Admin completo
 	router.HandleFunc("/admin/add-product", routes.AddProduct).Methods("POST")
 	router.HandleFunc("/admin/get-products", routes.AdminGetProducts).Methods("GET")
 	router.HandleFunc("/admin/delete-product/{id}", routes.DeleteProduct).Methods("POST")
@@ -38,7 +38,7 @@ func main() {
 	router.HandleFunc("/admin/change-order-status", routes.ChangeOrderStatus).Methods("POST")
 	router.HandleFunc("/admin/analytics", routes.GetAnalytics).Methods("GET")
 
-	//Address --incompleto falta separar de la db la logica
+	//Address
 	router.HandleFunc("/get-address", routes.GetAddresses).Methods("GET")
 	router.HandleFunc("/add-address", routes.AddAddress).Methods("POST")
 	router.HandleFunc("/delete-address", routes.DeleteAddress).Methods("POST")
